@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hai.yun.app.entity.UserMapper">
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" >
+        insert into user (_userName,_password) values
+        (#{username},#{password},#{sex},#{address})
+    </insert>
+
+    <resultMap id="users" type="com.hai.yun.app.entity.User">
+        <id property="_id" column="_id" javaType="int"/>
+        <result property="userName" column="_userName" javaType="String"/>
+        <result property="userPassword" column="_password" javaType="String"/>
+        <result property="sex" column="_sex" javaType="String"/>
+        <result property="address" column="_address" javaType="String"/>
+    </resultMap>
+
+    <select id="list" resultMap="users">
+        select * from user
+    </select>
+</mapper>
