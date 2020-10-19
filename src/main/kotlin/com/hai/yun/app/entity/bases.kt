@@ -30,6 +30,7 @@ interface BaseMapper<T> {
 }
 
 interface IBaseService<T>{
+
     /**
      * 保存
      */

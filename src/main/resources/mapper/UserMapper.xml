@@ -17,4 +17,8 @@
     <select id="list" resultMap="users">
         select * from user
     </select>
+    
+    <select id="findByName" parameterType="string"  resultMap="users">
+        select * from user where _userName=#{userName}
+    </select>
 </mapper>

@@ -23,11 +23,11 @@ data class User(
 //用户mapper映射
 
 interface UserMapper : BaseMapper<User> {
-
+    fun findByName(userName:String):List<User>
 }
 
 interface UserService : IBaseService<User> {
-
+    fun findByName(userName:String):List<User>
 }
 
 //注意这个注解要使用allopen插件
@@ -42,6 +42,11 @@ class UserServiceImp : BaseServiceImpl<User>, UserService {
     override fun getMapper(): BaseMapper<User> {
         return mapper
     }
+
+    override fun findByName(userName: String):List<User> {
+       return mapper.findByName(userName)
+    }
+
 
 
 }
@@ -73,5 +78,15 @@ class UserController {
         val list = userService.list()
         println(list)
         return list
+    }
+
+    //使用get方法查询名字
+    @GetMapping("/getUserName")
+    @ResponseBody
+    fun findByName(userName: String):List<User>{
+        println(userName)
+        val result=userService.findByName(userName)
+        println(result)
+        return result
     }
 }
