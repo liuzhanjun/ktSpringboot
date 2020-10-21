@@ -26,7 +26,7 @@ interface UserMapper : BaseMapper<User> {
     fun findByName(userName:String):List<User>
 }
 
-interface UserService : IBaseService<User> {
+interface UserService{
     fun findByName(userName:String):List<User>
 }
 
@@ -56,15 +56,8 @@ class UserServiceImp : BaseServiceImpl<User>, UserService {
 @RequestMapping("/user")
 class UserController {
 
-
-    var userService: UserService
-
     @Autowired
-    constructor(userServiceImp: UserServiceImp) {
-        this.userService = userServiceImp
-    }
-
-
+    lateinit var userService: UserServiceImp
     @PostMapping
     fun save(user: User): String {
         userService.save(user)
